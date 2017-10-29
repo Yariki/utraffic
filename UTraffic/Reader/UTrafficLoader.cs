@@ -83,7 +83,7 @@ namespace UklonTraffic.Reader
                                             if (info != null && info.Traffic != null && info.Traffic.RegionInfo != null)
                                             {
                                                 trafficStatus.TrafficValue = info.Traffic.RegionInfo.Level;
-                                                Console.WriteLine($"RegionCode: {trafficStatus.RegionCode}; Title: {trafficStatus.Title}; Status: {trafficStatus.Status}");
+                                                Console.WriteLine($"RegionCode: {trafficStatus.RegionCode}; Status: {trafficStatus.Status}");
                                             }
                                             trafficStatus.Status = HttpStatusCode.OK;
                                             reader.Close();
@@ -101,7 +101,7 @@ namespace UklonTraffic.Reader
                         catch (WebException e)
                         {
                             trafficStatus.Status = HttpStatusCode.RequestTimeout;
-                            Console.WriteLine($"RegionCode: {trafficStatus.RegionCode}; Title: {trafficStatus.Title}; Url ({url}) ; Problem: {e.Message}");
+                            Console.WriteLine($"RegionCode: {trafficStatus.RegionCode};  Url ({url}) ; Problem: {e.Message}");
                         }
                     }
                 }

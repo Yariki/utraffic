@@ -2,3 +2,6 @@
 /UklonTraffic/obj
 /UklonTraffic/*.user
 /.vs
+/UTraffic/bin
+/UTraffic/obj
+/UTraffic/*.user
