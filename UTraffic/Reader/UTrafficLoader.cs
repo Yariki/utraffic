@@ -19,6 +19,8 @@ namespace UklonTraffic.Reader
         private AutoResetEvent eventThread;
 
 
+        // I use List<T> because I don't write any information to List<T> and it's easier to get access to item by index. In other case it's better to use colletions from namespace "Concurrent".
+
         public UTrafficLoader(List<UTrafficStatus> list, int start, int finish)
         {
             this.list = list;
