@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -32,8 +33,13 @@ namespace UklonTraffic
                     loaders.Add(new UTrafficLoader(list, tuple.Item1, tuple.Item2));
                 }
                 var events = loaders.Select(l => l.GetEvent()).ToArray();
+                var watch = new Stopwatch();
+                watch.Start();
                 loaders.ForEach(l => l.Start());
                 WaitHandle.WaitAll(events);
+
+                watch.Stop();
+                Console.WriteLine($"Executed time: {watch.ElapsedMilliseconds} ms.");
 
                 SaveResult(list);
 

@@ -4,7 +4,7 @@
     {
         None,
         Success,
-        NoContent,
+        TrafficNotFound,
         Timeout,
         Error
     }

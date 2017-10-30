@@ -14,7 +14,7 @@ namespace UklonTraffic.Models
 
         public int TrafficValue { get; set; } = -1;
 
-        public HttpStatusCode Status { get; set; }
+        public eUStatus Status { get; set; }
 
         public override string ToString()
         {

@@ -85,15 +85,21 @@ namespace UklonTraffic.Reader
                                             if (info != null && info.Traffic != null && info.Traffic.RegionInfo != null)
                                             {
                                                 trafficStatus.TrafficValue = info.Traffic.RegionInfo.Level;
-                                                Console.WriteLine($"RegionCode: {trafficStatus.RegionCode}; Status: {trafficStatus.Status}");
+                                                trafficStatus.Status = eUStatus.Success;
+                                                Console.WriteLine(
+                                                    $"RegionCode: {trafficStatus.RegionCode}; Status: {trafficStatus.Status}");
                                             }
-                                            trafficStatus.Status = HttpStatusCode.OK;
+                                            else
+                                            {
+                                                trafficStatus.Status = eUStatus.TrafficNotFound;
+                                            }
+                                            
                                             reader.Close();
                                             resp.Close();
                                         }
                                         break;
                                     default:
-                                        trafficStatus.Status = response.StatusCode;
+                                        trafficStatus.Status = eUStatus.Error;
                                         break;
                                 }
                                 
@@ -102,7 +108,7 @@ namespace UklonTraffic.Reader
                         }
                         catch (WebException e)
                         {
-                            trafficStatus.Status = HttpStatusCode.RequestTimeout;
+                            trafficStatus.Status = eUStatus.Timeout;
                             Console.WriteLine($"RegionCode: {trafficStatus.RegionCode};  Url ({url}) ; Problem: {e.Message}");
                         }
                     }
